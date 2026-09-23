@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+
+    <div class="container">
+        <div class="card p-4 mx-auto shadow-sm" style="max-width: 500px;">
+            <h3 class="mb-4 text-center">البيانات المستلمة</h3>
+            
+            <p><strong>البريد الإلكتروني:</strong> <span id="user-email" class="text-primary"></span></p>
+            <p><strong>كلمة المرور:</strong> <span id="user-password" class="text-danger"></span></p>
+
+            <a href="Log_in.html" class="btn btn-secondary mt-3">رجوع</a>
+        </div>
+    </div>
+
+    <script>
+        // قراءة الرابط واستخراج المتغيرات بعد علامة ?
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // جلب القيم حسب خاصية name الموجودة في الفورم
+        const email = urlParams.get('email');
+        const password = urlParams.get('Password'); // الحرف كبير كما كتبته في name="Password"
+
+        // طباعة القيم داخل عناصر الصفحة
+        document.getElementById('user-email').textContent = email || 'لا يوجد بريد';
+        document.getElementById('user-password').textContent = password || 'لا توجد كلمة مرور';
+    </script>
+</body>
+</html>
