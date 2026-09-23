@@ -16,6 +16,10 @@
             left: auto;
             transform-origin: top right;
         }
+        /* في الوضع الداكن: تحويل الظل إلى توهج أبيض/رمادي فاتح */
+    [data-bs-theme="dark"] .shadow-lg {
+        box-shadow: 0 1rem 3rem rgba(255, 255, 255, 0.15) !important;
+    }
     </style>
 
 </head>
@@ -26,22 +30,26 @@
         <div>
             <h2 id="header-title">Log in</h2>
         </div>
-        <div>
+        <div class="d-flex mx-4 gap-3">
            <select class="form-select w-auto" id="lang-select" aria-label="Language select">
                 <option value="en" selected>English</option>
                 <option value="ar">العربية</option>
             </select>
+            <!-- زر تبديل الوضع الليلي -->
+    <button class="btn btn-outline-secondary" id="theme-toggle" type="button" aria-label="Toggle theme">
+        🌙
+    </button>
         </div>
 
     </header>
 
 
-    <div class="d-flex flex-column min-vh-100 bg-white">
+    <div class="d-flex flex-column min-vh-100 bg-body">
 
         <div class="container col-10 col-md-8 col-xl-6 col-xxl-5 m-auto">
 
 
-            <div class=" bg-light p-5 rounded-3 shadow-lg">
+            <div class=" bg-body-tertiary p-5 rounded-3 shadow-lg">
 
                 <form action="home.html" method="get">
                     <h2 class="mt-2" id="form-title">Log in</h2>
@@ -127,6 +135,21 @@
             labelPassword.textContent = data.password;
             btnSubmit.textContent = data.submit;
         });
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', () => {
+    // التحقق من الوضع الحالي
+    const isDark = htmlRoot.getAttribute('data-bs-theme') === 'dark';
+    
+    if (isDark) {
+        htmlRoot.removeAttribute('data-bs-theme'); // العودة للوضع الفاتح
+        themeToggleBtn.textContent = '🌙';
+    } else {
+        htmlRoot.setAttribute('data-bs-theme', 'dark'); // تفعيل الوضع الليلي
+        themeToggleBtn.textContent = '☀️';
+    }
+});
     </script>
 
 
